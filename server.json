@@ -1,0 +1,38 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.teamshift/teamshift",
+  "title": "TeamShift",
+  "description": "Read your TeamShift team, tasks and memory via OAuth, or use workspace tools with an API key.",
+  "version": "1.2.0",
+  "websiteUrl": "https://teamshift.io/developers",
+  "icons": [
+    { "src": "https://teamshift.io/icon-512.png", "mimeType": "image/png", "sizes": ["512x512"] }
+  ],
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://api.teamshift.io/v1/claude/mcp"
+    },
+    {
+      "type": "streamable-http",
+      "url": "https://api.teamshift.io/v1/mcp",
+      "headers": [
+        {
+          "name": "Authorization",
+          "description": "TeamShift API key created in the portal.",
+          "isRequired": true,
+          "isSecret": true,
+          "value": "Bearer {teamshift_api_key}",
+          "variables": {
+            "teamshift_api_key": {
+              "description": "TeamShift API key created in the portal.",
+              "isRequired": true,
+              "isSecret": true,
+              "placeholder": "ts_live_..."
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
