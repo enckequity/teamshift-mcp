@@ -1,0 +1,49 @@
+rules:
+  - id: mcp.hidden-controls
+    languages: [generic]
+    severity: WARNING
+    message: Invisible Unicode controls in source or tool text need review.
+    pattern-regex: '[\x{200B}-\x{200F}\x{202A}-\x{202E}\x{2060}-\x{206F}\x{FEFF}]'
+  - id: mcp.instruction-override
+    languages: [generic]
+    severity: WARNING
+    message: Instruction override text; review its context and authority.
+    pattern-regex: '(?i)(ignore|disregard|override)\s+(all\s+)?(previous|prior|system|developer)\s+(instructions?|prompts?|rules?)'
+  - id: mcp.python-execution
+    languages: [python]
+    severity: WARNING
+    message: Command execution boundary; verify that arguments are not attacker controlled.
+    pattern-either:
+      - pattern: os.system(...)
+      - pattern: os.popen(...)
+      - pattern: subprocess.run(..., shell=True, ...)
+      - pattern: subprocess.Popen(..., shell=True, ...)
+      - pattern: eval(...)
+      - pattern: exec(...)
+  - id: mcp.javascript-execution
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Dynamic or shell execution boundary; review argument origin.
+    pattern-either:
+      - pattern: eval(...)
+      - pattern: new Function(...)
+      - pattern: $CP.exec(...)
+      - pattern: $CP.execSync(...)
+  - id: mcp.python-egress
+    languages: [python]
+    severity: WARNING
+    message: Outbound request; inspect destination, payload and consent boundary.
+    pattern-either:
+      - pattern: requests.post(...)
+      - pattern: requests.put(...)
+      - pattern: httpx.post(...)
+      - pattern: httpx.put(...)
+      - pattern: urllib.request.urlopen(...)
+  - id: mcp.javascript-egress
+    languages: [javascript, typescript]
+    severity: WARNING
+    message: Outbound request; inspect destination, payload and consent boundary.
+    pattern-either:
+      - pattern: fetch(...)
+      - pattern: $HTTP.request(...)
+      - pattern: $AXIOS.post(...)

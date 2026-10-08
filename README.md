@@ -91,3 +91,8 @@ https://teamshift.io/developers for the scope list.
 ## Support
 
 Questions and access requests: https://teamshift.io/developers
+
+## MCP quality tooling
+
+Source/package review and authorized local official conformance: [quality tools](quality/README.md).
+Read the [disclosure policy](quality/DISCLOSURE.md) before publishing results.

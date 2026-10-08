@@ -1,0 +1,19 @@
+{
+  "name": "teamshift-mcp-quality",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "scenarios": "conformance list",
+    "test": "python3 -m unittest discover -s test && node --test test/pagination.test.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/conformance": "0.1.16",
+    "@modelcontextprotocol/sdk": "1.32.1"
+  },
+  "devDependencies": {
+    "cors": "2.8.5",
+    "tsx": "4.23.15"
+  }
+}
