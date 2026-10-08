@@ -25,3 +25,12 @@ Database staging preserves exact manifest paths, rejects unmanifested bytes, and
 snapshots. Missing/malformed engine output is incomplete. Own child process groups are cleaned
 by the launcher on timeout/cancellation; long-lived fixtures need exact PID/start/launcher ledger.
 Upstream pinned source and license notice remain intact; adapter changes update its trusted hash.
+
+The official active server suite requires its fixed synthetic tool/prompt/resource fixtures.
+Reports label that contract and do not certify general server compliance. Missing fixture
+names are not general protocol violations. Native stdio and mediated HTTP scope remain
+distinct; never claim native HTTP from an adapter or count source manifests as tested servers.
+
+`node --test test/pagination-live.test.mjs` exercises four owned synthetic socket-level
+pagination cases through the pinned SDK. No candidate server is started or counted.
+The fixture closes only its own listener/transports; no provider/tool calls or secrets.

@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "scenarios": "conformance list",
-    "test": "python3 -m unittest discover -s test && node --test test/pagination.test.mjs"
+    "test": "python3 -m unittest discover -s test && node --test test/pagination.test.mjs test/pagination-live.test.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/conformance": "0.1.16",

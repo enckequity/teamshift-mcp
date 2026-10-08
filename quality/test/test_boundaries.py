@@ -3,6 +3,8 @@ import json
 from pathlib import Path
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 spec = importlib.util.spec_from_file_location('mcp_quality', Path(__file__).parents[1] / 'mcp_quality.py')
 m = importlib.util.module_from_spec(spec)
@@ -62,3 +64,22 @@ class Boundaries(unittest.TestCase):
         for output in ['', '{}', '[]', '{"results": null}']:
             with self.subTest(output=output), self.assertRaises(ValueError): m.advisory_output(output)
         self.assertEqual(m.advisory_output('{"results": []}'), {'results': []})
+
+    def test_passing_fixture_suite_does_not_certify_general_server(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            package = root / 'node_modules/@modelcontextprotocol/conformance'
+            package.mkdir(parents=True)
+            (package / 'package.json').write_text(json.dumps({'version': '0.1.16'}))
+            args = SimpleNamespace(authorized=True, command='conformance',
+                url='http://127.0.0.1:3210/mcp', output=root / 'report.json')
+            upstream = SimpleNamespace(returncode=0, stdout='passed', stderr='')
+            supplemental = SimpleNamespace(returncode=0,
+                stdout='{"pages":1,"tools":1,"continuation_exercised":false}', stderr='')
+            with patch.object(m, 'ROOT', root), patch.object(m.shutil, 'which', return_value='/trusted/node'), \
+                 patch.object(m, 'execute', side_effect=[upstream, supplemental]):
+                report = m.conformance(args)
+            self.assertEqual(report['status'], 'upstream-pass-reported')
+            self.assertEqual(report['target_contract'], 'official-synthetic-reference-fixtures')
+            self.assertEqual(report['general_server_compliance'], 'not-evaluated')
+            self.assertFalse(report['pagination']['result']['continuation_exercised'])
