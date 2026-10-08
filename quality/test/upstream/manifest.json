@@ -1,0 +1,12 @@
+{
+  "revision": "21a9a2febd7100d7c17ac1021ee7f2ed9f66a1e0",
+  "tag": "v0.1.16",
+  "files": {
+    "examples/clients/typescript/everything-client.ts": "772f6d3318ff4397bfa4166cc1509b0daf2f51dab699d17a6cf9870ca5e5506f",
+    "examples/clients/typescript/helpers/ConformanceOAuthProvider.ts": "d7acce1a02f2df32c6633adcaf654c448e139dfed19d3e609ecb5aee0bc9ef20",
+    "examples/clients/typescript/helpers/logger.ts": "d8cfec07eb7e7f56ffdd9921dbc6261300633a757b445adb96b2d632750dfe81",
+    "examples/clients/typescript/helpers/withOAuthRetry.ts": "efee58c51342e3343320737699f8f20fe47c61b0bba515d0b2bc1927e864b49c",
+    "src/schemas/context.ts": "27f81ffe4f138d44c7ea9acdfa28aaa1a9ce85d6555d21bc1dd04d5983a25d98",
+    "examples/clients/typescript/sse-retry-test.ts": "5bfc77e6448c9cac6abaf68c6bd3251e0716f88eeb900a61a972ca4f544bf185"
+  }
+}
