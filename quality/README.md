@@ -66,7 +66,13 @@ of a typosquat. OSV matches lockfile/package versions against the offline snapsh
 
 ## Authorized local protocol checks
 
-The official server suite may invoke advertised tools. Use only an endpoint you own and
+The official active server suite invokes fixed upstream synthetic fixtures, including
+`test_simple_text`, `test_simple_prompt` and `test://static-text`; it is not a general
+semantic validator for arbitrary server tools/resources. A valid server lacking these
+fixtures can fail that suite. Reports retain the actual upstream status and explicitly
+label the fixture contract; they do not certify general server compliance. The numeric
+loopback restriction establishes transport scope, not fixture compatibility or permission.
+Use only an endpoint you own and
 are authorized to exercise with synthetic data, never a customer or arbitrary public endpoint:
 
 ```sh
@@ -75,8 +81,8 @@ python3 mcp_quality.py conformance --authorized \
 python3 mcp_quality.py client-conformance --authorized --output /private/new-client.json
 ```
 
-The first command runs the official active server suite for handshake, tools/schema/errors and
-Streamable HTTP. It then follows `tools/list` cursors using the official SDK, with repeated-cursor,
+The first command runs the official active server suite against its synthetic fixture
+contract for handshake, tools/schema/errors and Streamable HTTP. It then follows `tools/list` cursors using the official SDK, with repeated-cursor,
 100-page and 10,000-tool limits. A one-page response explicitly records continuation as unexercised.
 The second command runs the bundled, hash-checked trusted reference client against the official
 suite's synthetic local fixtures, including OAuth discovery. It does not test a candidate client
@@ -99,9 +105,16 @@ npm audit
 The scanner tests contain **100 labeled synthetic positives** and four held-out benign controls;
 they do not represent 100 real servers, novel vulnerabilities, or exhaustive accuracy.
 Pagination regression tests exercise continuation, repeated cursors and the page budget.
+Four additional socket-level cases use the real pinned SDK client and an owned synthetic
+loopback server: opaque two-page traversal, single-page non-coverage, repeated cursor and
+exact 100-page refusal. They close their own listeners/transports and invoke no tools;
+these are supplemental protocol cases, not four independently tested candidate servers.
 The official v0.1.16 pin has 58 listed scenarios across client/server roles; active server proof
 ran 30 scenarios/40 checks on one trusted reference, and the patched trusted client passed
 26 scenarios/321 checks. Counts are different units and are not interchangeable.
+Native stdio server coverage is unexercised: the pinned upstream server CLI accepts an HTTP
+URL. A stdio-to-HTTP adapter cannot certify the underlying server's native HTTP transport,
+and fixture-specific failures must remain distinct from protocol failures.
 No 100-actual-server acceptance is claimed. That requires an authorized corpus and isolated
 candidate execution infrastructure; arbitrary package execution on the host is out of scope.
 

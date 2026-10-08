@@ -240,7 +240,11 @@ def conformance(args) -> dict:
                       "result": json.loads(supplemental.stdout) if supplemental.returncode == 0 else None}
     passed = result.returncode == 0 and (pagination is None or pagination["exit_code"] == 0)
     return {"kind": "official-server-conformance" if url else "official-trusted-reference-client-conformance", "version": VERSIONS["conformance"], "url": url,
-            "suite": "active" if url else "all", "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr,
+            "suite": "active" if url else "all",
+            "target_contract": "official-synthetic-reference-fixtures",
+            "general_server_compliance": "not-evaluated",
+            "fixture_expectations": "Fixed upstream tool, prompt and resource names; missing fixture support is not a general MCP violation",
+            "exit_code": result.returncode, "stdout": result.stdout, "stderr": result.stderr,
             "artifacts": str(artifacts), "pagination": pagination, "status": "upstream-pass-reported" if passed else "failed",
             "client_auth_discovery": "not tested by server suite" if url else "see upstream client scenarios", "distinct_server_attempts": 1 if url else 0}
 
