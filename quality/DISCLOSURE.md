@@ -1,7 +1,7 @@
 # MCP quality tooling: reporting and disclosure
 
 This policy applies to TeamShift's MCP conformance wrapper and source/package scanner in
-`tools/mcp_quality`. It does not authorize testing a third party's running server or account.
+`quality` in the public TeamShift MCP repository. It does not authorize testing a third party's running server or account.
 Run protocol tests only against systems you own or have explicit permission to test. Static
 source review never authorizes executing candidate code, installing its hooks, or using its
 credentials. Do not send private package names, source, or data to an advisory service without
