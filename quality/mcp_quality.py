@@ -89,9 +89,28 @@ def environment(home: Path) -> dict[str, str]:
 def execute(command: list[str], env: dict[str, str], cwd: Path, *, offline: bool = False) -> subprocess.CompletedProcess:
     if offline:
         sandbox = shutil.which("sandbox-exec")
-        if sys.platform != "darwin" or not sandbox:
+        if sys.platform == "darwin" and sandbox:
+            command = [sandbox, "-p", "(version 1)(allow default)(deny network*)", *command]
+        elif sys.platform == "linux":
+            sandbox = Path(os.environ.get('MCP_QUALITY_BWRAP', ''))
+            engine_setting = os.environ.get('MCP_QUALITY_ENGINE_ROOT', '')
+            if not engine_setting:
+                raise ValueError('Explicit owned static engine root required')
+            engine_root = Path(engine_setting).resolve()
+            if not sandbox.is_file() or digest(sandbox) != os.environ.get('MCP_QUALITY_BWRAP_SHA256'):
+                raise ValueError('Pinned Linux offline isolation unavailable; refusing fallback')
+            if not Path(command[0]).resolve().is_relative_to(engine_root) or engine_root == Path('/'):
+                raise ValueError('Explicit owned static engine root required')
+            command = [str(sandbox.resolve()), '--unshare-all', '--die-with-parent', '--new-session',
+                       '--ro-bind', '/usr', '/usr', '--symlink', 'usr/bin', '/bin',
+                       '--symlink', 'usr/lib', '/lib', '--symlink', 'usr/lib64', '/lib64',
+                       '--proc', '/proc', '--dev', '/dev', '--tmpfs', '/tmp',
+                       '--ro-bind', '/etc/ssl/certs/ca-certificates.crt', '/etc/ssl/certs/ca-certificates.crt',
+                       '--ro-bind', str(engine_root), str(engine_root),
+                       '--ro-bind', str(ROOT), str(ROOT), '--bind', str(cwd), str(cwd),
+                       '--chdir', str(cwd), *command]
+        else:
             raise ValueError("Offline OS network isolation unavailable; refusing fallback")
-        command = [sandbox, "-p", "(version 1)(allow default)(deny network*)", *command]
     process = subprocess.Popen(command, env=env, cwd=cwd, stdin=subprocess.DEVNULL,
                                stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True,
                                start_new_session=True)

@@ -6,6 +6,8 @@
   "license": "MIT",
   "scripts": {
     "scenarios": "conformance list",
+    "build:native": "node native/build.mjs",
+    "test:native": "node --import tsx --test test/native-scenarios.test.ts test/native-overflow.test.ts",
     "test": "python3 -m unittest discover -s test && node --test test/pagination.test.mjs test/pagination-live.test.mjs"
   },
   "dependencies": {
@@ -13,7 +15,9 @@
     "@modelcontextprotocol/sdk": "1.32.1"
   },
   "devDependencies": {
+    "@types/node": "22.20.5",
     "cors": "2.8.5",
+    "esbuild": "0.28.2",
     "tsx": "4.23.15"
   }
 }

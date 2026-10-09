@@ -1,0 +1,2 @@
+# Preserve the exact vendored bytes verified by the upstream manifest on every OS.
+quality/native/upstream/** -text
