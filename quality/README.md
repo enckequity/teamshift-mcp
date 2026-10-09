@@ -4,10 +4,26 @@ Read [DISCLOSURE.md](DISCLOSURE.md) before testing or sharing results. This wrap
 [official MCP conformance](https://github.com/modelcontextprotocol/conformance/tree/v0.1.16),
 Semgrep and OSV Scanner. It does not implement a competing protocol test suite.
 
+Native stdio: `npm run build:native` bundles the hash-verified v0.1.16 source adapter;
+`npm run test:native` runs three upstream baseline scenarios against an owned synthetic
+stdio fixture. `python3 native_stdio.py --help` describes the explicitly authorized Linux
+launcher. Admission requires an exact private receipt containing `identity`, `package`,
+`version`, `entrypoint`, every regular source/dependency file hash, `profile: baseline`, and
+`admission: reviewed-offline-baseline`. Nonempty dependencies require a reviewed npm v3 lock
+with transitive integrity. Supply exact Bubblewrap, Node and runner SHA256 pins. A qualified
+existing user cgroup bounds memory/processes/time; Bubblewrap denies host mounts and egress.
+No candidate tool is invoked. Reports appear only after owned-unit cleanup. These checks
+do not certify HTTP/OAuth/SSE, provider operations or general compliance; candidate results
+remain private under the disclosure policy. Static manifests and fixtures are not100 servers.
+
 ## Install the reviewed tools
 
-Python 3.13+, Node 22+ and macOS with `sandbox-exec` are required for the demonstrated path.
-Source scanning refuses to run without kernel network denial; other platforms are unverified.
+Use Python 3.12+ and Node 22+. macOS scanning requires `sandbox-exec`; Linux requires
+qualified Bubblewrap isolation. Set `MCP_QUALITY_BWRAP`, its exact
+`MCP_QUALITY_BWRAP_SHA256`, and an explicit `MCP_QUALITY_ENGINE_ROOT` containing the
+owned installed static engines. Linux mounts only runtime, engine root, public CA bundle,
+this quality directory and the owned scratch directory; network denial has no fallback.
+Other platforms remain unverified. Native execution additionally requires user cgroup limits.
 From this directory:
 
 ```sh

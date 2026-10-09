@@ -1,0 +1,11 @@
+import { readFileSync } from 'node:fs';
+import { runNativeScenarios } from './scenarios';
+const path = process.argv[2];
+if (!path) throw new Error('Owned launch parameters required');
+const parameters = JSON.parse(readFileSync(path, 'utf8'));
+if (parameters.profile !== 'baseline') throw new Error('Candidate execution supports baseline only: no tool invocation');
+const report = await runNativeScenarios(parameters.server, 'baseline');
+const text = JSON.stringify(report);
+if (Buffer.byteLength(text) > 1024 * 1024) throw new Error('Report exceeds output budget');
+console.log(text);
+process.exitCode = report.results.every(result => result.checks.every(check => check.status === 'SUCCESS')) ? 0 : 1;

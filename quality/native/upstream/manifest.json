@@ -1,0 +1,47 @@
+{
+  "revision": "21a9a2febd7100d7c17ac1021ee7f2ed9f66a1e0",
+  "tag": "v0.1.16",
+  "scope": "native stdio transport adapter; upstream fixture contract unchanged",
+  "files": {
+    "src/types.ts": {
+      "upstream_sha256": "f5be7fabf61c63ca1cbf539553ee7d5a98a1dc0a8155a071c6563e4516b66c4e",
+      "installed_sha256": "f5be7fabf61c63ca1cbf539553ee7d5a98a1dc0a8155a071c6563e4516b66c4e"
+    },
+    "src/scenarios/server/lifecycle.ts": {
+      "upstream_sha256": "3df31a9105816aa90e0770000fe4b36e75d14b58f9f126d5f9935ad0cc022030",
+      "installed_sha256": "3df31a9105816aa90e0770000fe4b36e75d14b58f9f126d5f9935ad0cc022030"
+    },
+    "src/scenarios/server/utils.ts": {
+      "upstream_sha256": "04ff776d5061ae1ed3c42ddfe2fb1ffc997f4657c592d688d7633a3a051ec647",
+      "installed_sha256": "04ff776d5061ae1ed3c42ddfe2fb1ffc997f4657c592d688d7633a3a051ec647"
+    },
+    "src/scenarios/server/tools.ts": {
+      "upstream_sha256": "00f884431bf91ce73efe7a88a5069b3fc1d3c48d32f48a8c1ee0c6bb39a755fb",
+      "installed_sha256": "00f884431bf91ce73efe7a88a5069b3fc1d3c48d32f48a8c1ee0c6bb39a755fb"
+    },
+    "src/scenarios/server/resources.ts": {
+      "upstream_sha256": "75044201da787e211fe69398798a1c5b08d446fba6c8c0f846ecdb7494c73275",
+      "installed_sha256": "75044201da787e211fe69398798a1c5b08d446fba6c8c0f846ecdb7494c73275"
+    },
+    "src/scenarios/server/prompts.ts": {
+      "upstream_sha256": "a1b8784a1074e3141491ce89bfffdb13664c9eab63a769a966b8fee5a8e6ca1e",
+      "installed_sha256": "a1b8784a1074e3141491ce89bfffdb13664c9eab63a769a966b8fee5a8e6ca1e"
+    },
+    "src/scenarios/server/elicitation-defaults.ts": {
+      "upstream_sha256": "8dfc3ef48ec70469f04752587f4d9640380f22e928d890bea046a2743d00f242",
+      "installed_sha256": "8dfc3ef48ec70469f04752587f4d9640380f22e928d890bea046a2743d00f242"
+    },
+    "src/scenarios/server/elicitation-enums.ts": {
+      "upstream_sha256": "fbda85efe382c5042c570a3228cc5c2c9e77f61f5115234edc1c5068b12bfe37",
+      "installed_sha256": "fbda85efe382c5042c570a3228cc5c2c9e77f61f5115234edc1c5068b12bfe37"
+    },
+    "src/scenarios/server/json-schema-2020-12.ts": {
+      "upstream_sha256": "6cd183738ab878c2ea2b2e8ed4356364b7c8c1ea548a9ae92149ec6ac88e21ae",
+      "installed_sha256": "6cd183738ab878c2ea2b2e8ed4356364b7c8c1ea548a9ae92149ec6ac88e21ae"
+    },
+    "src/scenarios/server/client-helper.ts": {
+      "upstream_sha256": "e592d6374ccaafb9d9bd393d37aabf60e6814e9fae6517d9a51adda84b3d491c",
+      "installed_sha256": "d0f72b3e6b6818835cc322530c114ad1bd5ac96f59b82f2f7b876df416246842"
+    }
+  }
+}

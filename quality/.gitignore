@@ -3,3 +3,6 @@ __pycache__/
 *.artifacts/
 results/
 .venv/
+
+native/runner.mjs
+native/build-receipt.json

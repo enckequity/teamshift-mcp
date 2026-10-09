@@ -34,3 +34,17 @@ distinct; never claim native HTTP from an adapter or count source manifests as t
 `node --test test/pagination-live.test.mjs` exercises four owned synthetic socket-level
 pagination cases through the pinned SDK. No candidate server is started or counted.
 The fixture closes only its own listener/transports; no provider/tool calls or secrets.
+
+## Native stdio execution
+
+`npm run build:native` verifies the vendored upstream manifest and bundles the pinned SDK.
+`npm run test:native` uses an owned synthetic stdio fixture; it is not a real-server count.
+`native_stdio.py` accepts explicitly reviewed immutable source/installed-dependency receipts
+for baseline initialize, ping and tools/list only. It never invokes candidate tools. Require
+the exact runtime, bundle and Bubblewrap hashes, a qualified Linux user cgroup, private
+filesystem/PID/network namespaces and proven timeout/child cleanup before admission.
+No install hooks, inherited credentials, host HOME/drives/sockets, public endpoints or
+fallback containment. Record launcher PID/start ticks and unique unit intent before work;
+acceptance reports become visible only after exact-unit cleanup is verified. Keep candidate
+receipts/results private under DISCLOSURE.md. Failed startup and static reviews do not count
+as executed protocol interactions. HTTP/OAuth/SSE and fixed-fixture scope stay separately labeled.
