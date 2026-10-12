@@ -11,6 +11,7 @@ Disclosure was public first in repository PR1 at commit
 | Live supplemental tools/list | 1 page, 14 tools | Continuation unexercised |
 | Official client suite 0.1.16 | 26 scenarios, 321 checks passed | Bundled trusted client against synthetic suite fixtures; SDK 1.32.1 |
 | Offline advisory proof | requests==2.31.0 fixture produced OSV findings and review-required exit 1 | Package metadata only; candidate never installed or executed |
+| Native stdio JSON Schema 2020-12, 2026-10-12 | Upstream `json-schema-2020-12`: 4 checks passed on owned fixture; `$schema`, `$defs`, `additionalProperties` strips each failed only its own check; 7 owned fixture processes exited | Synthetic fixed-fixture proof; 0 candidate servers, no tool invocation, not compliance certification |
 | npm audit | Zero reported vulnerabilities | Point-in-time npm advisory coverage |
 | Adversarial review | Blocking staging overwrite fixed; final review clear | Bounded artifact review |
 

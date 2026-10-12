@@ -6,7 +6,10 @@ Semgrep and OSV Scanner. It does not implement a competing protocol test suite.
 
 Native stdio: `npm run build:native` bundles the hash-verified v0.1.16 source adapter;
 `npm run test:native` runs three upstream baseline scenarios against an owned synthetic
-stdio fixture. `python3 native_stdio.py --help` describes the explicitly authorized Linux
+stdio fixture. It also runs the unchanged upstream `json-schema-2020-12` fixed-fixture scenario
+(SEP-1613, four checks) against a second owned synthetic stdio fixture, plus three mutations
+that strip `$schema`, `$defs` or `additionalProperties: false` and must fail exactly that
+check. This is synthetic fixed-fixture proof only: no candidate server, no tool invocation. `python3 native_stdio.py --help` describes the explicitly authorized Linux
 launcher. Admission requires an exact private receipt containing `identity`, `package`,
 `version`, `entrypoint`, every regular source/dependency file hash, `profile: baseline`, and
 `admission: reviewed-offline-baseline`. Nonempty dependencies require a reviewed npm v3 lock

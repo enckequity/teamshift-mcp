@@ -7,7 +7,7 @@
   "scripts": {
     "scenarios": "conformance list",
     "build:native": "node native/build.mjs",
-    "test:native": "node --import tsx --test test/native-scenarios.test.ts test/native-overflow.test.ts",
+    "test:native": "node --import tsx --test test/native-scenarios.test.ts test/native-overflow.test.ts test/native-json-schema.test.ts",
     "test": "python3 -m unittest discover -s test && node --test test/pagination.test.mjs test/pagination-live.test.mjs"
   },
   "dependencies": {
